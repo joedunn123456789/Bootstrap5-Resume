@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Joseph Henry Dunn II - Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Minimal custom CSS for print and Bootstrap gaps -->
+  <style>
+    /* Print styles - Bootstrap doesn't handle print well */
+    @media print {
+      /* Hide non-essential UI */
+      .btn,
+      nav,
+      footer {
+        display: none !important;
+      }
+
+      /* Reset background and text for clarity */
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+        line-height: 1.4;
+        font-family: "Times New Roman", Georgia, serif;
+      }
+
+      /* Page margins */
+      @page {
+        margin: 1in;
+      }
+
+      /* Headings */
+      h1, h2, h3, h4 {
+        color: #000 !important;
+        font-weight: bold;
+        margin-top: 0.8em;
+        margin-bottom: 0.3em;
+
+        /* Allow continuous flow */
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+        page-break-inside: auto !important;
+      }
+
+      /* Sections: allow breaking */
+      .section {
+        page-break-inside: auto !important;
+        margin-bottom: 1.2em;
+      }
+
+      /* Jobs: allow breaking inside */
+      .job {
+        page-break-inside: auto !important;
+        margin-bottom: 1em;
+      }
+
+      /* Lists */
+      ul, ol {
+        margin-left: 1.2em;
+        list-style-type: disc;
+      }
+      li {
+        margin-bottom: 0.3em;
+        page-break-inside: auto !important;
+      }
+
+      /* Skills grid */
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3em;
+      }
+      .skill-tag {
+        border: 1px solid #000;
+        padding: 0.2em 0.4em;
+        font-size: 9pt;
+      }
+
+      /* Links: plain text */
+      a {
+        color: #000 !important;
+        text-decoration: none !important;
+      }
+
+      /* Remove manual page-break utility */
+      .page-break {
+        page-break-before: auto !important;
+        break-before: auto !important;
+      }
+      
+      /* Tighten spacing for PDF export */
+      body {
+        font-size: 0.9rem;
+      }
+      .section {
+        margin-bottom: 1rem;
+      }
+    }
+    
+    /* Minimal custom styles for Bootstrap gaps */
+    .section {
+      margin-bottom: 2rem;
+    }
+    
+    .section h2 {
+      border-bottom: 2px solid #0d6efd;
+      padding-bottom: 0.5rem;
+    }
+    
+    .job h3 {
+      color: #0d6efd;
+    }
+    
+    .skill-tag {
+      background: #0d6efd;
+      color: #fff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container bg-white py-4 px-4 my-4 shadow-sm rounded">
+
+    <!-- Header -->
+    <header class="text-center mb-5">
+      <h1 class="display-4 fw-bold mb-2">Joseph Henry Dunn II</h1>
+      <p class="lead mb-1">Fully Remote (Wildomar, CA)</p>
+      <p class="mb-3">📞 830-666-2525 | ✉️ <a href="mailto:jdunn0423@gmail.com">jdunn0423@gmail.com</a></p>
+
+      <!-- Download PDF Button -->
+      <div class="my-3">
+        <a href="assets/resume.pdf" class="btn btn-primary btn-lg" download>
+          Download PDF
+        </a>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <section class="mb-5">
+      <h2 class="mb-3">Summary</h2>
+      <p class="mb-3">Cloud Systems Engineer | Infrastructure Manager | Automation Leader with 10+ years of experience specializing in cloud architecture, enterprise IT infrastructure, and secure system automation across federal, defense, and corporate environments.</p>
+      <p class="mb-3">Leads hybrid teams of engineers, developers, and cybersecurity analysts to design, deploy, and support fault-tolerant cloud environments in Azure and AWS, often under tight compliance constraints tied to public and DoD-grade security standards.</p>
+      <p class="mb-3">Spearheads automation of IT workflows and repetitive system tasks using PowerShell, Python, Power Automate, and ServiceNow, freeing up hundreds of team hours annually while reducing error rates in mission-critical environments.</p>
+      <p>Drives end-to-end execution of enterprise IT rollouts, migrating legacy infrastructure to the cloud, aligning architecture with NIST SP 800-53 and FedRAMP standards, and delivering uptime SLAs above 99.9% across Microsoft 365 and custom platforms.</p>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-5">
+      <h2 class="mb-3">Skills</h2>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="skill-tag">ServiceNow Install and Development</span>
+        <span class="skill-tag">Salesforce Install and Development</span>
+        <span class="skill-tag">Strategic Infrastructure Planning</span>
+        <span class="skill-tag">Cloud Architecture Design</span>
+        <span class="skill-tag">Disaster Recovery Strategy</span>
+        <span class="skill-tag">Cybersecurity Frameworks</span>
+        <span class="skill-tag">IT Governance & Compliance</span>
+        <span class="skill-tag">Cross-Functional Team Leadership</span>
+        <span class="skill-tag">Workflow Process Optimization</span>
+        <span class="skill-tag">Incident Response Coordination</span>
+        <span class="skill-tag">Business Continuity Planning</span>
+        <span class="skill-tag">Vendor Relationship Management</span>
+        <span class="skill-tag">Operational Risk Mitigation</span>
+        <span class="skill-tag">Agile Project Execution & Reporting</span>
+        <span class="skill-tag">Cost Reduction Strategy</span>
+        <span class="skill-tag">Technical Documentation</span>
+        <span class="skill-tag">Stakeholder Communication</span>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="mb-5">
+      <h2 class="mb-4">Experience</h2>
+
+      <!-- Tactis LLC -->
+      <article class="mb-4">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h3 class="h4 mb-0">Tactis LLC</h3>
+          <small class="text-muted">(Remote, HQ Washington, D.C.)</small>
+        </div>
+        <p class="mb-2"><strong>Systems Engineer (Promoted from System Administrator)</strong> | Aug 2022 – October 2025</p>
+        
+        <h5 class="mt-3 mb-2">Infrastructure & Systems Engineering</h5>
+        <ul class="mb-3">
+          <li>Reduced ticket resolution time by 30% by designing and deploying an integrated ServiceNow and NICE CXOne solution.</li>
+          <li>Improved incident response time by 25% and enhanced threat visibility by building an Azure Sentinel compliance program.</li>
+          <li>Increased customer satisfaction by 35% by engineering custom integrations between NICE CXOne and Zendesk using REST APIs.</li>
+          <li>Reduced downtime by 25% through hybrid Azure Active Directory and Microsoft 365 infrastructure management.</li>
+          <li>Boosted throughput by scripting automated task flows in PowerShell & Python for onboarding, patching, & identity provisioning.</li>
+          <li>Led disaster recovery planning, validating business continuity via quarterly failover testing with 99.9% system availability SLAs.</li>
+          <li>Owned cloud governance and cybersecurity enforcement using Azure Policies, conditional access, and Sentinel analytics rules.</li>
+          <li>Built workflow automation in Power Automate and ServiceNow Flow Designer to eliminate redundant manual interventions.</li>
+          <li>Engaged Security, Ops, and Dev teams to enforce and support IT governance, change controls, and FedRAMP compliance audits.</li>
+          <li>Automated internal service requests and approval workflows, reducing average processing time by 35%.</li>
+        </ul>
+        
+        <h5 class="mt-3 mb-2">Website Development & Modernization</h5>
+        <ul>
+          <li>Led Drupal/PHP website modernization with Acquia Cloud support, improving scalability and maintainability.</li>
+          <li>Built and maintained local dev environments with Docker/DDEV; managed source control with Bitbucket.</li>
+          <li>Refactored SCSS and Twig templates using Bootstrap 5, mobile‑first methodology with desktop overrides.</li>
+          <li>Configured Drupal Views and Block Embeds to enhance homepage functionality.</li>
+          <li>Developed custom reusable components for content authors, expanding publishing flexibility.</li>
+          <li>Translated Figma designs into pixel‑accurate, production‑ready code.</li>
+          <li>Increased Lighthouse performance scores from 70 → 90, boosting speed, accessibility, and SEO.</li>
+        </ul>
+      </article>
+
+      <!-- Tlingit Haida Tribal Business Corporation -->
+      <article class="mb-4">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h3 class="h4 mb-0">Tlingit Haida Tribal Business Corporation</h3>
+          <small class="text-muted">(Government Contracting, Tribal-owned Business Solutions)</small>
+        </div>
+        <p class="mb-2"><strong>Information Technology Manager</strong> | Colorado Springs, CO | Apr 2021 – Apr 2022</p>
+        <ul>
+          <li>Led end-to-end Salesforce deployment, including external data migration, and workflow automation, resulting in a 25% increase in sales and ticketing pipelines visibility</li>
+          <li>Customized and integrated Salesforce with existing business systems, reducing manual reporting time by 10 hours per week</li>
+          <li>Guided Salesforce adoption by designing dashboards and training sessions, boosting the user adoption rate to 100% within 2 months</li>
+          <li>Developed with customizations, Service Cloud case management workflows, reducing ticket resolution time by 25% through automated routing and escalation rules</li>
+          <li>Integrated Salesforce with external ticketing platform Jira, enabling bi-directional sync and improving cross-teams collaboration</li>
+          <li>Fine-tuned knowledge base article suggestions within Service Console, boosting the first-contact resolution rates by 15%</li>
+          <li>Increased operational efficiency by standardizing IT workflows and modernizing cross-site network architecture for 2 locations.</li>
+          <li>Improved system reliability by 20% by migrating 10 on-prem servers and 35TB of structured data to VMware ESXi 7.7.</li>
+          <li>Reduced downtime by 40% by leading full-stack cloud migrations to Microsoft 365 and Azure for 100 users.</li>
+          <li>Drove a 20% boost in user productivity by upgrading Active Directory and email services with modern access controls & policies.</li>
+          <li>Owned a $1M IT budget, aligning procurement, vendor selections, and resource planning with business objectives.</li>
+          <li>Enforced network security posture and enforced compliance controls tied to DoD STIGs, NIST, and agency-specific frameworks.</li>
+          <li>Managed IT operations staff across service desk, network, and systems teams, supporting 24/7 operations & project execution.</li>
+          <li>Created disaster recovery plans to protect data integrity & restore services during unplanned outages.</li>
+        </ul>
+      </article>
+
+      <!-- Crystal Management -->
+      <article class="mb-4">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h3 class="h4 mb-0">Crystal Management</h3>
+          <small class="text-muted">(Cybersecurity, IT, Transformation, Veteran-owned Services Provider)</small>
+        </div>
+        <p class="mb-2"><strong>System Administrator</strong> | Colorado Springs, CO | Feb 2021 – Apr 2021</p>
+        <ul>
+          <li>Supported the Air Force's ACAS compliance reporting by generating authenticated scans and remediating findings.</li>
+          <li>Migrated security center by configuring Tenable SC and integrating ACAS data feeds into vulnerability management dashboards.</li>
+          <li>Led Red Hat Enterprise Linux 7.x upgrades, scripting deployment tasks and rollback contingencies for zero downtime transitions.</li>
+          <li>Improved system updates and audits by automating routine tasks using Bash scripting and security scan scheduling workflows.</li>
+          <li>Partnered with base cyber teams to uphold Information Assurance standards, applying DISA STIGs and implementation guides.</li>
+          <li>Drove system hardening and patch management on DoD-classified networks in accordance with RMF & NIST 800-53 policies.</li>
+          <li>Monitored system logs and IDS alerts to identify anomalies and support incident response escalations with cybersecurity staff.</li>
+          <li>Documented system changes and compliance actions in alignment with Change Control Board (CCB) and DoD standards.</li>
+        </ul>
+      </article>
+
+      <!-- United States Army -->
+      <article class="mb-4">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h3 class="h4 mb-0">United States Army</h3>
+        </div>
+        <p class="mb-2"><strong>Information Management Director</strong> | Multiple Locations | Jan 2018 – Apr 2021</p>
+        <ul>
+          <li>Directed large-scale IT initiatives, including GFEBS (Army Salesforce) system enhancements and full SharePoint Online migration.</li>
+          <li>Cut costs 25% and increased user adoption by leading architecture redesign, permissions, and training for SharePoint migration.</li>
+          <li>Integrated network security policies across 500+ classified and unclassified systems, applying RMF controls & threat mitigation.</li>
+          <li>Led help desk, systems, and communications teams of 70+ personnel across cross-functional IT support and logistics operations.</li>
+          <li>Established continuity of operations, backup strategy, and system uptime assurance during deployed and garrison operations.</li>
+          <li>Delivered executive briefings and technical reports to senior leadership, aligning IT infrastructure goals with mission priorities.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Certifications -->
+    <section class="mb-5">
+      <h2 class="mb-3">Certifications</h2>
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">Microsoft Certified: Azure Fundamentals</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">Azure Administrator Associate</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">AWS Solutions Architect – Associate</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">CompTIA Security+</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">Microsoft 365 Fundamentals</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">ServiceNow Developer</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">ServiceNow System Administrator</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">SalesForce Developer</li>
+        <li class="list-inline-item badge bg-secondary me-1 mb-1">SalesForce System Administrator</li>
+      </ul>
+    </section>
+
+    <!-- Education -->
+    <section class="mb-5">
+      <h2 class="mb-3">Education</h2>
+      <p class="mb-0">Bachelor of Science (BS), Computer Science | Full Sail University | July 2018</p>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
