@@ -15,15 +15,36 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install wkhtmltopdf
-        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
-
-      - name: Generate PDF from GitHub Pages
-        run: |
-          mkdir -p assets
-          wkhtmltopdf --enable-local-file-access \
-            https://joedunn123456789.github.io/Bootstrap5-Resume/ \
-            assets/resume.pdf
+      - name: Generate PDF with Puppeteer
+        uses: docker://ghcr.io/alvistack/puppeteer:latest
+        with:
+          args: |
+            mkdir -p assets
+            node -e "
+            const puppeteer = require('puppeteer');
+            (async () => {
+              const browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+              });
+              const page = await browser.newPage();
+              await page.goto('https://joedunn123456789.github.io/Bootstrap5-Resume/', {
+                waitUntil: 'networkidle0'
+              });
+              await page.pdf({
+                path: 'assets/resume.pdf',
+                format: 'A4',
+                printBackground: true,
+                margin: {
+                  top: '0.5in',
+                  right: '0.5in',
+                  bottom: '0.5in',
+                  left: '0.5in'
+                }
+              });
+              await browser.close();
+            })();
+            "
 
       - name: Commit PDF back to repo
         run: |
