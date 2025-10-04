@@ -1,0 +1,34 @@
+name: generate-resume-pdf
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install wkhtmltopdf
+        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
+
+      - name: Generate PDF from GitHub Pages
+        run: |
+          mkdir -p assets
+          wkhtmltopdf --enable-local-file-access \
+            https://joedunn123456789.github.io/Bootstrap5-Resume/ \
+            assets/resume.pdf
+
+      - name: Commit PDF back to repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add assets/resume.pdf
+          git commit -m "Auto-update resume.pdf" || echo "No changes to commit"
+          git push
