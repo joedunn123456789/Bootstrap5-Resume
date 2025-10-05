@@ -10,119 +10,139 @@
   
   <!-- Minimal custom CSS for print and Bootstrap gaps -->
   <style>
-    /* Print styles - Bootstrap doesn't handle print well */
-    @media print {
-      /* Hide non-essential UI */
-      .btn,
-      nav,
-      footer {
-        display: none !important;
-      }
+  /* Base styles for screen */
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .section h2 {
+    border-bottom: 2px solid #0d6efd;
+    padding-bottom: 0.5rem;
+  }
+  
+  .job h3 {
+    color: #0d6efd;
+  }
+  
+  .skill-tag {
+    background: #0d6efd;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
 
-      /* Reset background and text for clarity */
-      body {
-        background: #fff !important;
-        color: #000 !important;
-        font-size: 11pt;
-        line-height: 1.4;
-        font-family: "Times New Roman", Georgia, serif;
-      }
-
-      /* Page margins */
-      @page {
-        margin: 1in;
-      }
-
-      /* Headings */
-      h1, h2, h3, h4 {
-        color: #000 !important;
-        font-weight: bold;
-        margin-top: 0.8em;
-        margin-bottom: 0.3em;
-
-        /* Allow continuous flow */
-        page-break-before: auto !important;
-        page-break-after: auto !important;
-        page-break-inside: auto !important;
-      }
-
-      /* Sections: allow breaking */
-      .section {
-        page-break-inside: auto !important;
-        margin-bottom: 1.2em;
-      }
-
-      /* Jobs: allow breaking inside */
-      .job {
-        page-break-inside: auto !important;
-        margin-bottom: 1em;
-      }
-
-      /* Lists */
-      ul, ol {
-        margin-left: 1.2em;
-        list-style-type: disc;
-      }
-      li {
-        margin-bottom: 0.3em;
-        page-break-inside: auto !important;
-      }
-
-      /* Skills grid */
-      .skills-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.3em;
-      }
-      .skill-tag {
-        border: 1px solid #000;
-        padding: 0.2em 0.4em;
-        font-size: 9pt;
-      }
-
-      /* Links: plain text */
-      a {
-        color: #000 !important;
-        text-decoration: none !important;
-      }
-
-      /* Remove manual page-break utility */
-      .page-break {
-        page-break-before: auto !important;
-        break-before: auto !important;
-      }
-      
-      /* Tighten spacing for PDF export */
-      body {
-        font-size: 0.9rem;
-      }
-      .section {
-        margin-bottom: 1rem;
-      }
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    /* Hide non-essential UI */
+    .btn,
+    nav,
+    footer {
+      display: none !important;
     }
-    
-    /* Minimal custom styles for Bootstrap gaps */
+
+    /* Reset background and text for clarity */
+    body {
+      background: #fff !important;
+      color: #000 !important;
+      font-size: 11pt;
+      line-height: 1.4;
+      font-family: "Times New Roman", Georgia, serif;
+    }
+
+    /* Page margins */
+    @page {
+      margin: 1in;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4 {
+      color: #000 !important;
+      font-weight: bold;
+      margin-top: 0.8em;
+      margin-bottom: 0.3em;
+
+      /* Allow continuous flow */
+      page-break-before: auto !important;
+      page-break-after: auto !important;
+      page-break-inside: auto !important;
+    }
+
+    /* Sections: allow breaking */
     .section {
-      margin-bottom: 2rem;
+      page-break-inside: auto !important;
+      margin-bottom: 1.2em;
     }
-    
-    .section h2 {
-      border-bottom: 2px solid #0d6efd;
-      padding-bottom: 0.5rem;
+
+    /* Jobs: allow breaking inside */
+    .job {
+      page-break-inside: auto !important;
+      margin-bottom: 1em;
     }
-    
-    .job h3 {
-      color: #0d6efd;
+
+    /* Lists */
+    ul, ol {
+      margin-left: 1.2em;
+      list-style-type: disc;
     }
-    
+    li {
+      margin-bottom: 0.3em;
+      page-break-inside: auto !important;
+    }
+
+    /* Skills grid */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3em;
+    }
     .skill-tag {
-      background: #0d6efd;
-      color: #fff;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.875rem;
+      border: 1px solid #000;
+      padding: 0.2em 0.4em;
+      font-size: 9pt;
     }
-  </style>
+
+    /* Links: plain text */
+    a {
+      color: #000 !important;
+      text-decoration: none !important;
+    }
+
+    /* Remove manual page-break utility */
+    .page-break {
+      page-break-before: auto !important;
+      break-before: auto !important;
+    }
+    
+    /* Tighten spacing for PDF export */
+    body {
+      font-size: 0.9rem;
+    }
+    .section {
+      margin-bottom: 1rem;
+    }
+
+    /* ===== PDF GENERATOR ENHANCEMENTS ===== */
+    /* Ensure PDF generators handle colors correctly */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  
+    /* Force backgrounds to print */
+    .skill-tag, .badge {
+      background: #0d6efd !important;
+      color: white !important;
+      border: 1px solid #0d6efd !important;
+    }
+  
+    /* Prevent page breaks in key sections */
+    .job, .section {
+      break-inside: avoid;
+    }
+  }
+</style>
 </head>
 <body class="bg-light">
 

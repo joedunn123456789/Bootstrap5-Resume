@@ -15,36 +15,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate PDF with Puppeteer
-        uses: docker://ghcr.io/alvistack/puppeteer:latest
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          args: |
-            mkdir -p assets
-            node -e "
-            const puppeteer = require('puppeteer');
-            (async () => {
-              const browser = await puppeteer.launch({
-                headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
-              });
-              const page = await browser.newPage();
-              await page.goto('https://joedunn123456789.github.io/Bootstrap5-Resume/', {
-                waitUntil: 'networkidle0'
-              });
-              await page.pdf({
-                path: 'assets/resume.pdf',
-                format: 'A4',
-                printBackground: true,
-                margin: {
-                  top: '0.5in',
-                  right: '0.5in',
-                  bottom: '0.5in',
-                  left: '0.5in'
-                }
-              });
-              await browser.close();
-            })();
-            "
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Puppeteer and dependencies
+        run: |
+          npm init -y
+          npm install puppeteer
+
+      - name: Generate PDF with Puppeteer
+        run: node generate-pdf.js
 
       - name: Commit PDF back to repo
         run: |
@@ -53,3 +36,9 @@ jobs:
           git add assets/resume.pdf
           git commit -m "Auto-update resume.pdf" || echo "No changes to commit"
           git push
+
+      - name: Upload PDF as artifact (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: assets/resume.pdf
