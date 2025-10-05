@@ -23,7 +23,7 @@ jobs:
       - name: Install Puppeteer
         run: npm install puppeteer
 
-      - name: Generate PDF
+      - name: Generate PDF without download button and no margins
         run: |
           mkdir -p assets
           node -e "
@@ -31,17 +31,45 @@ jobs:
           (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
             const page = await browser.newPage();
-            await page.goto('https://joedunn123456789.github.io/Bootstrap5-Resume/', {waitUntil: 'networkidle0'});
+            
+            // Go to the local file instead of GitHub Pages to ensure latest version
+            await page.goto('file:///home/runner/work/Bootstrap5-Resume/Bootstrap5-Resume/index.html', {waitUntil: 'networkidle0'});
+            
+            // Hide the download button before generating PDF
+            await page.evaluate(() => {
+              const downloadButton = document.querySelector('.no-print');
+              if (downloadButton) {
+                downloadButton.style.display = 'none';
+              }
+            });
+            
             await page.pdf({
               path: 'assets/resume.pdf', 
               format: 'Letter', 
               printBackground: true, 
+              margin: {
+                top: '0',
+                right: '0',
+                bottom: '0',
+                left: '0'
+              }
             });
             await browser.close();
           })();
           "
 
-      - name: Commit PDF
+      - name: Verify PDF was created
+        run: |
+          ls -la assets/
+          if [ -f "assets/resume.pdf" ]; then
+            echo "✅ PDF created successfully!"
+            file assets/resume.pdf
+          else
+            echo "❌ PDF was NOT created!"
+            exit 1
+          fi
+
+      - name: Commit PDF back to repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto-update resume.pdf"
