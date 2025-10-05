@@ -23,20 +23,29 @@ jobs:
       - name: Install Puppeteer
         run: npm install puppeteer
 
-      - name: Create and run PDF script
+      - name: Generate PDF
         run: |
-          cat > pdf.js << 'EOF'
+          mkdir -p assets
+          node -e "
           const puppeteer = require('puppeteer');
           (async () => {
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
             const page = await browser.newPage();
             await page.goto('https://joedunn123456789.github.io/Bootstrap5-Resume/', {waitUntil: 'networkidle0'});
-            await page.pdf({path: 'assets/resume.pdf', format: 'Letter', printBackground: true, margin: {top: '0.5in', right: '0.5in', bottom: '0.5in', left: '0.5in'}});
+            await page.pdf({
+              path: 'assets/resume.pdf', 
+              format: 'Letter', 
+              printBackground: true, 
+              margin: {
+                top: '0.5in', 
+                right: '0.5in', 
+                bottom: '0.5in', 
+                left: '0.5in'
+              }
+            });
             await browser.close();
           })();
-          EOF
-          mkdir -p assets
-          node pdf.js
+          "
 
       - name: Commit PDF
         uses: stefanzweifel/git-auto-commit-action@v4
