@@ -15,9 +15,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate PDF with Puppeteer
+      - name: Generate PDF with Puppeteer (with debugging)
         run: |
           mkdir -p assets
+          echo "Installing Puppeteer..."
+          npx puppeteer@latest --version
+          
+          echo "Generating PDF..."
           npx puppeteer@latest print \
             --format=Letter \
             --margin-top=0.5in \
@@ -27,11 +31,22 @@ jobs:
             --print-background \
             "https://joedunn123456789.github.io/Bootstrap5-Resume/" \
             assets/resume.pdf
+          
+          echo "Checking if PDF was created..."
+          ls -la assets/
+          if [ -f "assets/resume.pdf" ]; then
+            echo "✅ PDF created successfully!"
+            file assets/resume.pdf
+          else
+            echo "❌ PDF was NOT created!"
+            exit 1
+          fi
 
       - name: Commit PDF back to repo
+        if: success()
         run: |
           git config user.name "github-actions"
-          git config user.email "actions@users.noreply.github.com"
+          git config user.email "github-actions@github.com"
           git add assets/resume.pdf
-          git commit -m "Auto-update resume.pdf" || echo "No changes to commit"
+          git commit -m "Auto-update resume.pdf"
           git push
