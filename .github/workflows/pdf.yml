@@ -18,7 +18,15 @@ jobs:
       - name: Generate PDF with Puppeteer
         run: |
           mkdir -p assets
-          npx puppeteer@latest print --format=A4 --margin-top=0.5in --margin-bottom=0.5in --margin-left=0.5in --margin-right=0.5in "https://joedunn123456789.github.io/Bootstrap5-Resume/" assets/resume.pdf
+          npx puppeteer@latest print \
+            --format=Letter \
+            --margin-top=0.5in \
+            --margin-bottom=0.5in \
+            --margin-left=0.5in \
+            --margin-right=0.5in \
+            --print-background \
+            "https://joedunn123456789.github.io/Bootstrap5-Resume/" \
+            assets/resume.pdf
 
       - name: Commit PDF back to repo
         run: |
