@@ -15,30 +15,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install Puppeteer and dependencies
-        run: |
-          npm init -y
-          npm install puppeteer
-
       - name: Generate PDF with Puppeteer
-        run: node generate-pdf.js
+        run: |
+          mkdir -p assets
+          npx puppeteer@latest print --format=A4 --margin-top=0.5in --margin-bottom=0.5in --margin-left=0.5in --margin-right=0.5in "https://joedunn123456789.github.io/Bootstrap5-Resume/" assets/resume.pdf
 
       - name: Commit PDF back to repo
         run: |
           git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.email "actions@users.noreply.github.com"
           git add assets/resume.pdf
           git commit -m "Auto-update resume.pdf" || echo "No changes to commit"
           git push
-
-      - name: Upload PDF as artifact (optional)
-        uses: actions/upload-artifact@v4
-        with:
-          name: resume-pdf
-          path: assets/resume.pdf
