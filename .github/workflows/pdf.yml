@@ -15,38 +15,31 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate PDF with Puppeteer (with debugging)
-        run: |
-          mkdir -p assets
-          echo "Installing Puppeteer..."
-          npx puppeteer@latest --version
-          
-          echo "Generating PDF..."
-          npx puppeteer@latest print \
-            --format=Letter \
-            --margin-top=0.5in \
-            --margin-bottom=0.5in \
-            --margin-left=0.5in \
-            --margin-right=0.5in \
-            --print-background \
-            "https://joedunn123456789.github.io/Bootstrap5-Resume/" \
-            assets/resume.pdf
-          
-          echo "Checking if PDF was created..."
-          ls -la assets/
-          if [ -f "assets/resume.pdf" ]; then
-            echo "✅ PDF created successfully!"
-            file assets/resume.pdf
-          else
-            echo "❌ PDF was NOT created!"
-            exit 1
-          fi
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      - name: Commit PDF back to repo
-        if: success()
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Create and run PDF script
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add assets/resume.pdf
-          git commit -m "Auto-update resume.pdf"
-          git push
+          cat > pdf.js << 'EOF'
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const browser = await puppeteer.launch();
+            const page = await browser.newPage();
+            await page.goto('https://joedunn123456789.github.io/Bootstrap5-Resume/', {waitUntil: 'networkidle0'});
+            await page.pdf({path: 'assets/resume.pdf', format: 'Letter', printBackground: true, margin: {top: '0.5in', right: '0.5in', bottom: '0.5in', left: '0.5in'}});
+            await browser.close();
+          })();
+          EOF
+          mkdir -p assets
+          node pdf.js
+
+      - name: Commit PDF
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto-update resume.pdf"
+          file_pattern: assets/resume.pdf
